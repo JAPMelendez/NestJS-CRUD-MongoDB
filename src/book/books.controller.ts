@@ -10,7 +10,7 @@ export class BookController{
 
     @ApiCreatedResponse({type: Book, description:'Book Creation'})
     @ApiBadRequestResponse()
-    @Post('create')
+    @Post('')
     async createBook(@Res() response, @Body() book: Book){
         const newBook = await this.bookService.create(book);
         return response.status(HttpStatus.OK).json({
@@ -39,7 +39,7 @@ export class BookController{
 
     @ApiCreatedResponse({type: Book, description: 'Update by Id book'})
     @ApiBadRequestResponse()
-    @Put('update/:id')
+    @Put('/:id')
     async update(@Res() response, @Param('id') id:string, @Body() book: Book){
         const updateBook = await this.bookService.update(id, book);
         return response.status(HttpStatus.OK).json({
@@ -49,7 +49,7 @@ export class BookController{
 
     @ApiCreatedResponse({type: Book, description: 'Delete by Id book'})
     @ApiBadRequestResponse()
-    @Delete('delete/:id')
+    @Delete('/:id')
     async delete(@Res() response, @Param('id') id: string){
         const deleteBook = await this.bookService.delete(id);
         return response.status(HttpStatus.OK).json({
