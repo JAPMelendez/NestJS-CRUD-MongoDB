@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Post, Put, Res } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Res } from "@nestjs/common";
 import { ApiBadRequestResponse, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 import { Book } from "./schema/book.schema";
 import { BookService } from "./books.service";
@@ -29,7 +29,7 @@ export class BookController{
 
     @ApiOkResponse({type: Book, description: 'Search by Id book'})
     @ApiNotFoundResponse()
-    @Post('/:id')
+    @Get('/:id')
     async findById(@Res() response, @Param('id') id: string){
         const book = await this.bookService.readById(id);
         return response.status(HttpStatus.OK).json({
